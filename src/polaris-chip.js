@@ -29,6 +29,7 @@ export class PolarisChip extends LitElement {
     super();
     // a variable on this object called title
     this.title = 'Chip Default';
+    this.link = 'http://example.com';
   }
 
   // CSS styles are scoped JUST to this element. This uses a technology called
@@ -49,17 +50,27 @@ export class PolarisChip extends LitElement {
         display: inline-flex;
       }
 
+      a {
+        text-decoration: none; /* Removes the blue underline */
+      }
+
       span {
-        background-color: orange;
-        color: black;
+        display: inline-block;
+        background-color: yellow;
+        border: 1px solid grey;
         font-size: 24px;
         padding: 16px;
         margin: 8px;
+        color: black;
+        cursor: pointer;
       }
-
+      
+      span:force-within,
       span:hover {
-        background-color: grey;
-        border: 1px solid black;
+        a: focus span {
+          background-color: grey;
+          border: 1px solid black;
+          color: white;
       }
     `;
   }
@@ -83,7 +94,10 @@ export class PolarisChip extends LitElement {
     // it is going to print the title of the element. The magic of Lit is that
     // when title is changed (even by inspecting the document and hacking the value)
     // it will automatically update what is displayed and do so incredibly quickly
-    return html`<span>${this.title}</span>`;
+    return html`
+      <a href="${this.link}">
+        <span>${this.title}</span>
+      </a>`;
   }
 
   // LitElement uses the properties call to do the following:
@@ -95,6 +109,7 @@ export class PolarisChip extends LitElement {
     return {
       // this is a String. Array, Object, Number, Boolean are other valid values here
       title: { type: String },
+      link: {type: String},
     };
   }
 }

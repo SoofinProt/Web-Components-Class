@@ -26,17 +26,79 @@
 <body>
   <h1>polaris-chip</h1>
   <!-- this is going to do whatever the tag's defaults are -->
-  <polaris-chip title="News of Record" link="https://psu.edu/"></polaris-chip>
-  <polaris-chip title="Faculty and Staff"></polaris-chip>
-  <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
-  <polaris-chip title="Grants and donations"></polaris-chip>
+  <div class="controls">
+    <polaris-chip title="Add another card" link="#" id="add"></polaris-chip>
+    <polaris-chip title="Change card" link="#" id="transform"></polaris-chip>
+    <polaris-chip title="Delete last card" link="#" id="delete"></polaris-chip>
+  </div>
 
-  <h1>my-card</h1>
-  <my-card></my-card>
+  <h1>Event Cards</h1>
+  <div class="card-container"> 
+    <my-card 
+      title="Be My Valentine?" 
+      image="https://www.rainbownourishments.com/wp-content/uploads/2024/02/heart-shaped-cake-decorating-tutorial-vegan-raspberry-lemon-1.jpg"
+      description="Ask someone to be your valentine."
+      buttonText="Details"
+      background-color="MistyRose">
+    </my-card>
+
+    <my-card 
+      title="Happy Birthday" 
+      image="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_16:9/at%2Farchive%2F0e1022424e3ebb40c7ba5ca1161eaa092d41a014"
+      description="Make a wish!"
+      buttonText="Details"
+      background-color="PaleTurquoise">
+    </my-card>
+
+    <my-card 
+      title="Graduation" 
+      image="https://previews.123rf.com/images/niratpix/niratpix1906/niratpix190600027/126030171-graduates-hold-a-black-hat-with-a-yellow-tassel-attached-to-the-sky.jpg"
+      description="Congrats on Graduating!"
+      buttonText="Details"
+      background-color="RebeccaPurple">
+    </my-card>
+
+    <my-card 
+      title="Merry Christmas" 
+      image="https://previews.123rf.com/images/dashalapshina/dashalapshina2412/dashalapshina241200103/266051236-beautifully-decorated-christmas-tree-on-golden-background-with-glowing-bokeh-lights-warm-and.jpg"
+      description="What did you get me?"
+      buttonText="Details"
+      background-color="Maroon">
+    </my-card>
+
+    <my-card 
+      title="Vacation" 
+      image="https://previews.123rf.com/images/wolfhound911/wolfhound9112307/wolfhound911230705803/208868345-a-fat-woman-enjoys-her-vacation-sitting-relaxing-on-the-beach-in-the-background-the-beach-and-the.jpg"
+      description="Sit down and relax"
+      buttonText="Details"
+      background-color="PapayaWhip">
+    </my-card>
+  </div>
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
-</body>
 
+  <script>
+    document.querySelector('#add').addEventListener('click', () => {
+      const newCard = document.createElement('my-card');
+      document.querySelector('.card-container').appendChild(newCard);
+    });
+
+    document.querySelector('#transform').addEventListener('click', () => {
+      const firstCard = document.querySelector('my-card');
+      if (firstCard) {
+        firstCard.title = "I've Been Changed!";
+        firstCard.buttonText = "Wow!";
+      }
+    });
+
+    document.querySelector('#delete').addEventListener('click', () => {
+      const container = document.querySelector('.card-container');
+      if (container.lastElementChild) {
+        container.lastElementChild.remove();
+      }
+    });
+  </script>
+</body>
 </html>
